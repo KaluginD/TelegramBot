@@ -1,7 +1,7 @@
 
 # Telegram Bot
 
-Сам бот — @ysda_kalugin_forecast_bot 
+Сам бот — @ysda_kalugin_forecast_bot (сейчас отключен)
 
 Для выполнения задания были искользованы следующие API:
 
