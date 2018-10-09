@@ -1,33 +1,33 @@
 
 # Telegram Bot
 
-Сам бот — @ysda_kalugin_forecast_bot (сейчас отключен)
+Bot itself — @ysda_kalugin_forecast_bot (currently disabled, due to explire of licence for YandexWeatherAPI)
 
-Для выполнения задания были искользованы следующие API:
+For project implementation were used next API-s:
 
 - [TelergamBotAPI](https://github.com/python-telegram-bot/python-telegram-bot)
 - [YandexWeatherAPI](https://tech.yandex.ru/weather/)
 - [BingSearchAPI](https://docs.microsoft.com/en-us/azure/cognitive-services/bing-web-search/)
 
-Бот умеет обрабатывать следующие команды:
-- /start — выводит основную информацию оо боте
-- /help — выводит подробную информацию о боте, о возможных формах запроса и поддерживаемых командах
-- /contains [city] — позволяет проверить, может ли бот отвечать на запросы об этом городе
-- /feedback [message] — позволяет оставить обратную связь разработчикам
+The bot can handle the following commands:
+- /start — displays basic information about itself
+- /help — displays detailed information about the itself, the possible forms of the request and supported commands
+- /contains [city] — checks wether the bot can respond to requests about this city
+- /feedback [message] — leave feedback to developers
 
-На остальные команды бот отвечает, что не может их обработать.
+The bot responds to the remaining commands that it cannot process them.
 
-Обычные сообщения бот воспринимает как запросы касательно погоды. Обработка таких запросов проходит в несколько этапов:
-- парсинг входящего сообщения, извлечение из сообдщения города и даты
-- поиск прогноза в найденом городе на соответствующую дату
-- поиск стиха, соответсвующего полученой погоде
-- поиск картинки, соответствующей найденым городу и погоде
+Normal messages are taken by the bot as requests regarding the weather. Processing of such requests takes place in several stages:
+- parsing the incoming message, extracting the city and date from the message
+- search of the forecast in the found city for the corresponding date
+- search for a verse that matches the weather
+- search for a picture that matches the found city and weather
 
-Парсинг входящего сообщения делается с помощью библиотеки [pymorphy2](https://pymorphy2.readthedocs.io/en/latest/) в три этапа:
-- сперва все слова приводятся в начальную форму
-- среди этих слов ищется первое, которое содержится в городах, по которым можно делать запрос
-- вреди этих слов ищется первое слово/словосочетание/комбинация чисел, соответствующее дате
+Parsing of an incoming message is done using the [pymorphy2](https://pymorphy2.readthedocs.io/en/latest/) library in three steps:
+- at first all words are transformed to the initial form
+- among these words, it is searched for the first one, which is contained in cities for which you can make a request
+- among these words, it is searched for the first word/phrase/combination of numbers corresponding to the date.
 
-Тонкости:
-- бот отвечает на запросы о погоде только на ближайшие 10 дней(ограничение YandexWeatherAPI)
-- если в запросе есть слова, которые могут быть расценены как город, они будут расценены как город, даже если изначально несли другой смысл
+Implementation details:
+- the bot responds to requests for weather only for the next 10 days (YandexWeatherAPI restriction)
+- if the request contains words that can be regarded as a city, they will be regarded as a city, even if they originally carried a different meaning
